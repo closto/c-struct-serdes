@@ -8,7 +8,7 @@
   (print-unreadable-object (econ stream :type t :identity t)
     (format stream "~a~@[(=~a)~]"
             (take-slot econ 'name)
-            (take-slot econ 'value))))
+            (take-slot econ 'value nil))))
 
 (defun make-enum-constant (name &optional value)
   (check-type name string)

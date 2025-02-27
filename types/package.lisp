@@ -12,7 +12,7 @@
    #:struct-type
    ;; make-* functions
    #:make-primitive-type
-   #:make-enum-constnat
+   #:make-enum-constant
    #:make-enum-type
    #:make-array-type
    #:make-struct-member

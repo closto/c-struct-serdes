@@ -19,10 +19,11 @@
                               (:file "struct-type")))))
 
 (defsystem "css/tests"
-  :depends-on ("css" fiveam)
+  :depends-on ("css" "str" "fiveam" "alexandria" "cl-ppcre" "rutils")
   :components ((:module "tests"
                 :serial t
-                :components ((:file "test-all"))))
+                :components ((:file "test-all")
+                             (:file "test-types"))))
   :perform (test-op (o c)
                     (symbol-call :fiveam :run!
                                  (find-symbol* 'all-tests 'css.tests))))

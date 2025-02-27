@@ -4,3 +4,4 @@ ql fiveam
 ql alexandria
 ql cl-str
 ql cffi
+ql cl-ppcre

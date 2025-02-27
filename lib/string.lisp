@@ -1,7 +1,10 @@
 (defpackage #:css.string
   (:use #:cl)
   (:export #:shrink-string
-           #:join-with-last-altered))
+           #:join-with-last-altered
+           #:join-with-last-append
+           #:strjoin-horiz-with-limit
+           #:strjoin-vert-with-limit))
 
 (in-package #:css.string)
 

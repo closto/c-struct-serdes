@@ -4,6 +4,7 @@
            #:slot-extractor
            #:member-is-not-type-of
            #:check-member-is-type-of))
+(in-package #:css.object)
 
 (defun take-slot (obj slot &optional (fallback "<unbound>"))
   (check-type slot symbol)
