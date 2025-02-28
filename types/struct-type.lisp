@@ -26,15 +26,15 @@
 
 (defmethod print-object ((struct-t struct-type) stream)
   (print-unreadable-object (struct-t stream :type t :identity t)
-    (format stream "~a {~&~a~&}"
+    (format stream "~a {~a~&}"
             (take-slot struct-t 'name)
             (strjoin-vert-with-limit (mapcar #'struct-member-string
                                              (take-slot struct-t 'members nil))
-                                     4 16 60))))
+                                      4 16 60))))
 
 (defun make-struct-type (members &optional name)
   (check-type members list)
-  (check-member-is-type-of members 'struct-type)
+  (check-member-is-type-of members 'struct-member)
   (let ((struct-t (make-instance 'struct-type)))
     (setf (slot-value struct-t 'name) name
           (slot-value struct-t 'members) members)

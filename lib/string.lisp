@@ -74,11 +74,12 @@ Example:
           :then (shrink-string s max-len)
         :for lines-cur :from 1 :to max-lines
         :collect item :into items
-        :when (= lines-cur max-lines) :do
+        :when (or (= lines-cur max-lines) (null tail))  :do
            (let* ((indent (str:repeat indent-level indent-string))
                   (newline-indent (format nil "~%~A" indent)))
-             (if (print tail)
+             (if tail
                  (return
-                   (join-with-last-altered newline-indent items "..."))
+                   (join-with-last-altered newline-indent
+                                           (cons "" items) "..."))
                  (return
-                   (str:join newline-indent items))))))
+                   (str:join newline-indent (cons "" items)))))))
