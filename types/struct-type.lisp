@@ -1,10 +1,11 @@
 (in-package #:css.types)
-
+ 
 (defun print-struct-member (st-memb &optional (stream *standard-output*))
   (check-type st-memb struct-member)
   (with-slots (name base-type) st-memb
-        (write-string (decorate-name-with-type base-type name)
-                      stream)))
+    (let ((name (or name "")))
+      (write-string (decorate-name-with-type base-type name)
+                    stream))))
 
 (defun struct-member-string (st-memb)
   (with-output-to-string (stream)
@@ -27,7 +28,7 @@
 (defmethod print-object ((struct-t struct-type) stream)
   (print-unreadable-object (struct-t stream :type t :identity t)
     (format stream "~a {~a~&}"
-            (take-slot struct-t 'name)
+            (or (take-slot struct-t 'name) *anonymous-print*)
             (strjoin-vert-with-limit (mapcar #'struct-member-string
                                              (take-slot struct-t 'members nil))
                                       4 16 60))))

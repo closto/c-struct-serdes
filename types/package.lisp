@@ -10,6 +10,14 @@
    #:array-type
    #:struct-member
    #:struct-type
+   ;; accessors
+   #:name
+   #:constant-value
+   #:enum-constants
+   #:base-type
+   #:array-shape
+   #:struct-member-bitfield
+   #:struct-members
    ;; make-* functions
    #:make-primitive-type
    #:make-enum-constant
@@ -22,4 +30,5 @@
    #:decorate-name-with-type
    ;; ordinary functions
    #:print-struct-member
+   #:struct-member-string
    ))

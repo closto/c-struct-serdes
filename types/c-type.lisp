@@ -1,5 +1,7 @@
 (in-package #:css.types)
 
+(defparameter *anonymous-print* "<unnamed>")
+
 (defclass c-type ()
   ())
 
@@ -31,25 +33,31 @@ name is `arr' , then the produced string will be \"int arr[3][4]\".
 ;;; Classes
 ;; Primitive Type
 (defclass primitive-type (c-type)
-  (name))
+  ((name :accessor name)))
 
 ;; Enum Constant (member of enum-type)
 (defclass enum-constant ()
-  (name value))
+  ((name :accessor name)
+   (value :accessor constant-value)))
 
 ;; Enum Type
 (defclass enum-type (c-type)
-  (name constants))
+  ((name :accessor name)
+   (constants :accessor enum-constants)))
 
 ;; Array Type
 (defclass array-type (c-type)
-  (base-type shape))
+  ((base-type :accessor base-type)
+   (shape :accessor array-shape)))
 
 ;; Struct Member (member of struct-type)
 (defclass struct-member ()
-  (name base-type bitfield))
+  ((name :accessor name)
+   (base-type :accessor base-type)
+   (bitfield :accessor struct-member-bitfield)))
 
 ;; Struct Type
 (defclass struct-type (c-type)
-  (name members))
+  ((name :accessor name)
+   (members :accessor struct-members)))
 

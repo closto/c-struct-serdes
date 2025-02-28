@@ -15,7 +15,7 @@
 
 (defmethod print-object ((enum-t enum-type) stream)
   (labels ((enum-type-name (name)
-             (if name name (shrink-string name 16)))
+             (if name (shrink-string name 16) *anonymous-print*))
            (enum-type-members (constants)
              (handler-case
                  (let ((constant-names
@@ -35,7 +35,7 @@
     enum-t))
 
 (defmethod c-type-string ((enum-t enum-type))
-  (let ((enum-type-name (or (take-slot enum-t 'name) "<unnamed>")))
+  (let ((enum-type-name (or (take-slot enum-t 'name) *anonymous-print*)))
     (str:concat "enum " enum-type-name)))
 
 ;; no special treatment required for decorate-name-with-type
