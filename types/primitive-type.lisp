@@ -1,8 +1,5 @@
 (in-package #:css.types)
 
-(defclass primitive-type (c-type)
-  (name))
-
 (defmethod print-object ((prim-t primitive-type) stream)
   (print-unreadable-object (prim-t stream :type t :identity t)
     (format stream "~a"

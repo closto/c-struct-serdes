@@ -12,11 +12,11 @@
                 :depends-on ("lib")
                 :serial t
                 :components ((:file "package")
-                              (:file "c-type")
-                              (:file "primitive-type")
-                              (:file "enum-type")
-                              (:file "array-type")
-                              (:file "struct-type")))))
+                             (:file "c-type")
+                             (:file "primitive-type")
+                             (:file "enum-type")
+                             (:file "array-type")
+                             (:file "struct-type")))))
 
 (defsystem "css/tests"
   :depends-on ("css" "str" "fiveam" "alexandria" "cl-ppcre" "rutils")
@@ -25,5 +25,5 @@
                 :components ((:file "test-all")
                              (:file "test-types"))))
   :perform (test-op (o c)
-                    (symbol-call :fiveam :run!
+                    (symbol-call 'fiveam 'run!
                                  (find-symbol* 'all-tests 'css.tests))))

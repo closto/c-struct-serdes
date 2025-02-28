@@ -1,9 +1,5 @@
 (in-package #:css.types)
 
-;;; Struct Member (member of struct-type)
-(defclass struct-member ()
-  (name base-type bitfield))
-
 (defun print-struct-member (st-memb &optional (stream *standard-output*))
   (check-type st-memb struct-member)
   (with-slots (name base-type) st-memb
@@ -27,10 +23,6 @@
           (slot-value smemb 'name) name
           (slot-value smemb 'bitfield) bitfield)
     smemb))
-
-;;; Struct Type
-(defclass struct-type (c-type)
-  (name members))
 
 (defmethod print-object ((struct-t struct-type) stream)
   (print-unreadable-object (struct-t stream :type t :identity t)

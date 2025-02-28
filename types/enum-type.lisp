@@ -1,9 +1,5 @@
 (in-package #:css.types)
 
-;;; Enum Constant (member of enum-type)
-(defclass enum-constant ()
-  (name value))
-
 (defmethod print-object ((econ enum-constant) stream)
   (print-unreadable-object (econ stream :type t :identity t)
     (format stream "~a~@[(=~a)~]"
@@ -16,10 +12,6 @@
     (setf (slot-value econ 'name) name
           (slot-value econ 'value) value)
     econ))
-
-;;; Enum Type
-(defclass enum-type (c-type)
-  (name constants))
 
 (defmethod print-object ((enum-t enum-type) stream)
   (labels ((enum-type-name (name)

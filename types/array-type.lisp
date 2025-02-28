@@ -1,9 +1,5 @@
 (in-package #:css.types)
 
-;;; Array Type
-(defclass array-type (c-type)
-  (base-type shape))
-
 (defmethod c-type-string ((array-t array-type))
   (with-slots (base-type shape) array-t
     (format nil "~a[~{~a~^][~}]"

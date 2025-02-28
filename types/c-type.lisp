@@ -28,3 +28,28 @@ name is `arr' , then the produced string will be \"int arr[3][4]\".
 (defmethod decorate-name-with-type ((type c-type) name)
   (str:join " " (list (c-type-string type) name)))
 
+;;; Classes
+;; Primitive Type
+(defclass primitive-type (c-type)
+  (name))
+
+;; Enum Constant (member of enum-type)
+(defclass enum-constant ()
+  (name value))
+
+;; Enum Type
+(defclass enum-type (c-type)
+  (name constants))
+
+;; Array Type
+(defclass array-type (c-type)
+  (base-type shape))
+
+;; Struct Member (member of struct-type)
+(defclass struct-member ()
+  (name base-type bitfield))
+
+;; Struct Type
+(defclass struct-type (c-type)
+  (name members))
+
