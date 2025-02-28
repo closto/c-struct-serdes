@@ -11,7 +11,7 @@
     (setf (slot-value prim-t 'name) name)
     prim-t))
 
-(defmethod c-type-string ((type c-type))
+(defmethod c-type-string ((type primitive-type))
   (take-slot type 'name))
 
 ;; no special treatment required for decorate-name-with-type
