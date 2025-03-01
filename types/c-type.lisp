@@ -39,7 +39,7 @@ variable).
   "<undefined>")
 
 (defmethod decorate-name-with-type ((type c-type) name)
-  (str:join " " (list (c-type-string type) name)))
+  (str:concat (c-type-string type) " " name))
 
 (defmethod c-type-var-assignable-p ((type c-type))
   t)
