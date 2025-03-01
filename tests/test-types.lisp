@@ -159,3 +159,14 @@
          (memb2    (make-struct-member float-t "memb2"))
          (struct-t (make-struct-type (list memb1 memb2))))
     (is (null (name struct-t)))))
+
+(test struct-keyword-plus-struct-type-name-is-the-struct-type-representaiton
+  (let* ((struct-t    (make-struct-type nil "my_struct_t"))
+         (struct-repr (c-type-string struct-t)))
+    (is (string= "struct my_struct_t" struct-repr))))
+
+(test anonymous-struct-can-be-represented-in-order-to-debug
+  (let* ((struct-t    (make-struct-type nil))
+         (struct-repr (c-type-string struct-t)))
+    (is (string= (format nil "struct ~a" *anonymous-print*)
+                 struct-repr))))

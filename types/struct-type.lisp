@@ -33,6 +33,9 @@
                                              (take-slot struct-t 'members nil))
                                       4 16 60))))
 
+(defmethod c-type-string ((struct-t struct-type))
+  (str:concat "struct " (or (take-slot struct-t 'name) *anonymous-print*)))
+
 (defun make-struct-type (members &optional name)
   (check-type members list)
   (check-member-is-type-of members 'struct-member)

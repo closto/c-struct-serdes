@@ -31,4 +31,6 @@
    ;; ordinary functions
    #:print-struct-member
    #:struct-member-string
+   ;; constants
+   #:*anonymous-print*
    ))
