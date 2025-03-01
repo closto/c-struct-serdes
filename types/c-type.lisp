@@ -24,11 +24,25 @@ If the given c-type is `int' and the name is `var1', the produced string will be
 name is `arr' , then the produced string will be \"int arr[3][4]\".
 "))
 
+(defgeneric c-type-var-assignable-p (c-type)
+  (:documentation  "
+Determines whether a variable of the given type can be assigned from another
+variable.
+
+This is true for most types, but assignment is not allowed for the array type.
+Also, for the char-family pointer type, assigning is not permitted in the
+string semantics (that is, assigning a string literal to a char-family pointer
+variable).
+"))
+
 (defmethod c-type-string ((type c-type))
   "<undefined>")
 
 (defmethod decorate-name-with-type ((type c-type) name)
   (str:join " " (list (c-type-string type) name)))
+
+(defmethod c-type-var-assignable-p ((type c-type))
+  t)
 
 ;;; Classes
 ;; Primitive Type

@@ -28,6 +28,7 @@
    ;; generic methods
    #:c-type-string
    #:decorate-name-with-type
+   #:c-type-var-assignable-p
    ;; ordinary functions
    #:print-struct-member
    #:struct-member-string

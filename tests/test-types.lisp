@@ -27,6 +27,10 @@
     (is (string= "int var"
                  (decorate-name-with-type int-t "var")))))
 
+(test primitive-variable-is-assignable
+  (let ((int-t (make-primitive-type "int")))
+    (is-true (c-type-var-assignable-p int-t))))
+
 ;;; Enum Types
 (def-suite* enum-types
   :description "Test for enum-types"
@@ -70,6 +74,10 @@
          (enum-repr (c-type-string enum-t)))
     (is (string= "enum my_enum_t" enum-repr))))
 
+(test enum-type-variable-is-assignable
+  (let ((enum-t (make-enum-type nil)))
+    (is-true (c-type-var-assignable-p enum-t))))
+
 ;;; Array Type
 (def-suite* array-types
   :description "Test for array-types"
@@ -102,6 +110,10 @@
          (array-t (make-array-type int-t shape))
          (array-repr (c-type-string array-t)))
     (is (string= "int[1][2][3][4][5][6][7][8][9]" array-repr))))
+
+(test array-type-variable-is-not-assignable-directly
+  (let ((array-t (make-array-type (make-primitive-type "int") nil)))
+    (is-false (c-type-var-assignable-p array-t))))
 
 ;;; Struct Type
 (def-suite* struct-types
@@ -170,3 +182,7 @@
          (struct-repr (c-type-string struct-t)))
     (is (string= (format nil "struct ~a" *anonymous-print*)
                  struct-repr))))
+
+(test struct-type-variable-is-assignable
+  (let ((struct-t (make-struct-type nil)))
+    (is-true (c-type-var-assignable-p struct-t))))

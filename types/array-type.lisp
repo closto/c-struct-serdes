@@ -25,3 +25,6 @@
           (format nil "~a[~{~a~^][~}]"
                   name (take-slot array-t 'shape nil))))
     (decorate-name-with-type base-type name-with-shape)))
+
+(defmethod c-type-var-assignable-p ((array-t array-type))
+  nil)
