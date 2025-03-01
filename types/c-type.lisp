@@ -75,3 +75,7 @@ variable).
   ((name :accessor name)
    (members :accessor struct-members)))
 
+;; Type alias
+(defclass type-alias (c-type)
+  ((base-type :accessor base-type)
+   (name :accessor name)))

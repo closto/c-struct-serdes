@@ -14,6 +14,7 @@
                 :components ((:file "package")
                              (:file "c-type")
                              (:file "primitive-type")
+                             (:file "type-alias")
                              (:file "enum-type")
                              (:file "array-type")
                              (:file "struct-type")))))
