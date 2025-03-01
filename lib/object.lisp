@@ -33,7 +33,9 @@
             (take-slot c 'type))))
 
 (defun check-member-is-type-of (items type &optional (every nil))
-  (loop :with items-to-check := (or (and every items) (list (first items)))
+  (loop :with items-to-check
+          := (if every items
+                 (and items (list (first items))))
         :for a-member :in items-to-check
         :for idx :from 0
         :unless (typep a-member type)
