@@ -186,3 +186,22 @@
 (test struct-type-variable-is-assignable
   (let ((struct-t (make-struct-type nil)))
     (is-true (c-type-var-assignable-p struct-t))))
+
+;;; Type Aliases
+(def-suite* type-aliases
+  :description "Test for type-aliases"
+  :in types-tests)
+
+(test type-alias-has-basetype-and-name
+  (let ((u32-t (make-type-alias (make-primitive-type "unsigned int") "u32")))
+    (is (string= (name (base-type u32-t)) "unsigned int"))
+    (is (string= (name u32-t) "u32"))))
+
+(test type-alias-is-assignable-if-basetype-is
+  (let ((u32-t (make-type-alias (make-primitive-type "unsigned int") "u32")))
+    (is-true (c-type-var-assignable-p u32-t))))
+
+(test type-alias-isnot-assignable-if-basetype-isnot
+  (let* ((charr-t (make-array-type (make-primitive-type "char") '("10")))
+         (typedef (make-type-alias charr-t "charr")))
+    (is-false (c-type-var-assignable-p typedef))))

@@ -10,6 +10,7 @@
    #:array-type
    #:struct-member
    #:struct-type
+   #:type-alias
    ;; accessors
    #:name
    #:constant-value
@@ -25,6 +26,7 @@
    #:make-array-type
    #:make-struct-member
    #:make-struct-type
+   #:make-type-alias
    ;; generic methods
    #:c-type-string
    #:decorate-name-with-type
